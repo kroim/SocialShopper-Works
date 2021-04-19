@@ -12,6 +12,9 @@ import CreatePwd from "../pages/Authentication/CreatePassword";
 import Dashboard from "../pages/Dashboard";
 
 import Home from "../pages/Home";
+import TeamPage from "../pages/Front/Team";
+import Partners from "../pages/Front/Partners";
+import AppDownload from "../pages/Front/AppDownload";
 
 
 const authProtectedRoutes = [
@@ -23,6 +26,9 @@ const authProtectedRoutes = [
 const publicRoutes = [
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
+  { path: "/team", component: TeamPage },
+  { path: "/investor", component: Partners },
+  { path: "/download", component: AppDownload },
   { path: "/forget-password", component: ForgetPwd },
   { path: "/register", component: Register },
   { path: "/create-password", component: CreatePwd},

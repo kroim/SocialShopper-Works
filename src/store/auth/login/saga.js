@@ -11,12 +11,11 @@ const backendAPI = initBackendAPI();
 
 function* loginUser({ payload: { user, history } }) {
     try {
-        const response = yield call(backendAPI.loginUser, user.name, user.password);
-        const { login } = response;
-        if(login.token){
-            localStorage.setItem('token', login.token);
-            yield call(backendAPI.setLoggeedInUser, login);
-            yield put(loginSuccess(login));
+        const user = yield call(backendAPI.loginUser, user.email, user.password);
+        if(user.token){
+            localStorage.setItem('token', user.token);
+            yield call(backendAPI.setLoggeedInUser, user);
+            yield put(loginSuccess(user));
             history.push('/dashboard');
         } else {
             yield put(apiError("Invalid User"));

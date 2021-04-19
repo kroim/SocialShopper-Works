@@ -27,22 +27,11 @@ class BackendAPI {
   /**
    * Registers the user with given details
    */
-  registerUser = (email, name, password) => {
+  registerUser = (email, phone, password) => {
     return new Promise((resolve, reject) => {
-      postCall(`mutation{
-        register(email:"${email}", name:"${name}", password: "${password}"){
-            _id,
-            email,
-            name,
-            token
-        }
-    }`,
+      postCall('/register', { email, phone, password },
       (res) => {
-            if(res.register._id){
-              resolve(res.register);
-            } else {
-              reject("Resiger Failed");
-            }
+            resolve(res);
           },
           error => {
             reject(this._handleError(error));
@@ -81,17 +70,14 @@ class BackendAPI {
   /**
    * Login user with given details
    */
-  loginUser = (name, password) => {
+  loginUser = (email, password) => {
     return new Promise((resolve, reject) => {
-      getCall(`{
-        login(name:"${name}", password:"${password}"){
-          _id,
-          email,
-          name,
-          token
-         }
-        }`,(user) => {
-            resolve(user);
+      getCall('/login', {email, password},(res) => {
+            if(res.success){
+                resolve(res.data);
+            } else {
+                reject(res.error_message);
+            }
           },
           error => {
             reject(this._handleError(error));

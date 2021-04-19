@@ -4,11 +4,10 @@ import { Row, Col, Card } from "reactstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-// import images
-import bg from "../../assets/images/bg.jpg";
-import logoDark from "../../assets/images/logo-dark.png";
+
 import { loginUser as loginUserAction } from "../../store/actions";
 import PropTypes from 'prop-types';
+import {Footer, Header, Loader} from "../../components/General";
 
 
 class Login extends Component {
@@ -19,59 +18,81 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      headers: { names: 'Login' },
+      titleHeader: 'Login',
+      breadcrumbs: [
+        {
+          id: 1,
+          title: 'Home',
+          classicon: 'fa fa-angle-right',
+          aria: 'true'
+        },
+        {
+          id: 2,
+          title: 'Login',
+          classicon: '',
+          aria: 'true'
+        }
+      ]
+    };
   }
 
   onLogin = (e) => {
     const { loginUser, history } = this.props;
-    let username = document.getElementById('username').value;
+    let email = document.getElementById('email').value;
     let userpassword = document.getElementById('userpassword').value;
-    if(username.trim().length && userpassword.trim().length){
-      loginUser({name: username, password: userpassword}, history);
+    if(email.trim().length && userpassword.trim().length){
+      loginUser({email: email, password: userpassword}, history);
     }
     e.preventDefault();
   }
 
   render() {
-    console.log('login');
+    const { headers, titleHeader } = this.state;
     return (
-      <React.Fragment>
-        {" "}
-        <div
-          className="accountbg"
-          style={{
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundImage: `url(${bg})`
-          }}
-        ></div>
-        <div className="wrapper-page account-page-full">
-          <Card className="shadow-none">
-            <div className="card-block">
-              <div className="account-box">
-                <div className="card-box shadow-none p-4">
-                  <div className="p-2">
-                    <div className="text-center mt-4">
-                      <Link to="/">
-                        <img src={logoDark} height="22" alt="logo" />
-                      </Link>
-                    </div>
+      <div className="login bg-body3">
+        <div className="boxed">
+          <Loader />
+          {/*<TopBar />*/}
 
-                    <h4 className="font-size-18 mt-5 text-center">
-                      Welcome Back !
-                    </h4>
-                    <p className="text-muted text-center">
-                      Sign in to continue to Veltrix.
-                    </p>
+          <Header data={headers}/>
 
-                    <form className="mt-4" action="#">
+          <div className="page-title">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="page-title-heading">
+                    <h1 className="h1-title">{titleHeader}</h1>
+                  </div>
+                  <ul className="breadcrumbs">
+                    {
+                      this.state.breadcrumbs.map(data =>(
+                          <li key={data.id} ><Link to="#" title="">{data.title}<i className={data.classicon} aria-hidden={data.aria}></i></Link></li>
+                      ))
+                    }
+                  </ul>
+                  <div className="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section className="flat-row pd-auth">
+            <div className="page-content">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="col-md-3"/>
+                    <div className="col-md-6">
+
+                    <form className="mt-4 auth-form" action="#">
                       <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">Email</label>
                         <input
                           type="text"
                           className="form-control"
-                          id="username"
-                          placeholder="Enter username"
+                          id="email"
+                          placeholder="Enter email"
                         />
                       </div>
 
@@ -111,41 +132,18 @@ class Login extends Component {
                           </button>
                         </Col>
                       </Row>
-
-                      <Row className="form-group mt-2 mb-0">
-                        <div className="col-12 mt-3">
-                          <Link to="forget-password">
-                            <i className="mdi mdi-lock"></i> Forgot your
-                            password?
-                          </Link>
-                        </div>
-                      </Row>
                     </form>
-
-                    <div className="mt-5 pt-4 text-center">
-                      <p>
-                        Don't have an account ?{" "}
-                        <Link
-                          to="register"
-                          className="font-weight-medium text-primary"
-                        >
-                          {" "}
-                          Signup now{" "}
-                        </Link>{" "}
-                      </p>
-                      <p>
-                        © {new Date().getFullYear()} Veltrix. Crafted with{" "}
-                        <i className="mdi mdi-heart text-danger"></i> by
-                        Themesbrand
-                      </p>
-                    </div>
+                  </div>
+                    <div className="col-md-3"/>
                   </div>
                 </div>
               </div>
             </div>
-          </Card>
+          </section>
+
+          <Footer />
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

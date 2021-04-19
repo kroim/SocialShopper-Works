@@ -32,7 +32,7 @@ const menus = [
     {
         id: 6,
         name: 'App Download',
-        linkmenu: '/app_download',
+        linkmenu: '/download',
         namesub: undefined
     },
     {
