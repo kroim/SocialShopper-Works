@@ -80,7 +80,7 @@ class Register extends Component {
     return (
         <div className="sign-up bg-body3">
           <div className="boxed">
-            <Loader />
+            {/*<Loader />*/}
             {/*<TopBar />*/}
 
             <Header data={headers}/>

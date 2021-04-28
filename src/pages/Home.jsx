@@ -25,7 +25,7 @@ class Home01 extends Component {
         return (
             <div className="bg-body3">
                 <div className="boxed">
-                    <Loader />
+                    {/*<Loader />*/}
                     {/*<TopBar />*/}
                     {
                         this.state.headers.map(data => (

@@ -29,7 +29,7 @@ class AppDownload extends Component {
         return (
             <div className="app-download bg-body3">
                 <div className="boxed">
-                    <Loader />
+                    {/*<Loader />*/}
                     {/*<TopBar />*/}
 
                     <Header data={headers}/>

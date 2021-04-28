@@ -35,7 +35,7 @@ class Partners extends Component {
         return (
             <div className="partners bg-body3">
                 <div className="boxed">
-                    <Loader />
+                    {/*<Loader />*/}
                     {/*<TopBar />*/}
                     <Header data={headers}/>
                     <div className="page-title">

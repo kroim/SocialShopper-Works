@@ -53,7 +53,7 @@ class Login extends Component {
     return (
       <div className="login bg-body3">
         <div className="boxed">
-          <Loader />
+          {/*<Loader />*/}
           {/*<TopBar />*/}
 
           <Header data={headers}/>
