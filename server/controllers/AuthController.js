@@ -18,18 +18,18 @@ const AuthController = {
         }
     },
     login: async function(req, res){
-        const { email, password } = req.params;
-        let user = await User.findOne({ name: args.name });
+        const { email, password } = req.query;
+        let user = await User.findOne({ email: email });
         if(!user){
-            return null;
+            return res.json({ success: false, error_message: "Invalid User!" });
         }
-        let passwordIsValid =  bcrypt.compareSync(args.password, user.password);
+        let passwordIsValid =  bcrypt.compareSync(password, user.password);
 
         if(!passwordIsValid){
             return res.json({ success: false, error_message: "Invalid Password!" });
         }
 
-        return res.json({ success: true, data: user });
+        return res.json({ success: true, token: user.token, user: {_id: user._id, email: user.email, phone: user.phone, token: user.token} });
     },
     register: async function(req, res){
         const { email, phone, password } = req.body;

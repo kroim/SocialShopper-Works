@@ -5,17 +5,16 @@ import { LOGIN_USER, LOGOUT_USER } from './actionTypes';
 import { loginSuccess, logoutUserSuccess, apiError } from './actions';
 
 //AUTH related methods
-import { initBackendAPI } from '../../../helpers/backend';
+import { getBackendAPI } from '../../../helpers/backend';
 
-const backendAPI = initBackendAPI();
 
 function* loginUser({ payload: { user, history } }) {
     try {
-        const user = yield call(backendAPI.loginUser, user.email, user.password);
-        if(user.token){
-            localStorage.setItem('token', user.token);
-            yield call(backendAPI.setLoggeedInUser, user);
-            yield put(loginSuccess(user));
+        const result = yield getBackendAPI().loginUser(user.email, user.password);
+        if(result.token){
+            localStorage.setItem('token', result.token);
+            yield call(getBackendAPI().setLoggeedInUser, result.user);
+            yield put(loginSuccess(result.user));
             history.push('/dashboard');
         } else {
             yield put(apiError("Invalid User"));
@@ -27,7 +26,7 @@ function* loginUser({ payload: { user, history } }) {
 
 function* logoutUser({ payload: { history } }) {
     try {
-        const response = yield call(backendAPI.logout);
+        const response = yield call(getBackendAPI().logout);
         yield put(logoutUserSuccess(response));
         history.push('/login');
     } catch (error) {

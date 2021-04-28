@@ -20,7 +20,7 @@ import AppDownload from "../pages/Front/AppDownload";
 const authProtectedRoutes = [
   // Dashboard
   { path: "/manage/dashboard", component: Dashboard },
-  { path: "/manage/", exact: true, component: () => <Redirect to="/manage/dashboard" /> },
+  { path: "/dashboard", exact: true, component: () => <Redirect to="/manage/dashboard" /> },
 ];
 
 const publicRoutes = [

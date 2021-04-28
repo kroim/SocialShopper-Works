@@ -37,8 +37,8 @@ export const getCall = (action, data, successCallback, failCallback = null) => {
         `${API_BASE_URL}${action}`,
         { params: data, headers: headers}
     ).then((result) => {
-        console.log('getCall Success :', result.data.data);
-        successCallback(result.data.data);
+        console.log('getCall Success :', result.data);
+        successCallback(result.data);
     }).catch((error) => {
         console.log('getCall Failed', error);
         if(failCallback) {

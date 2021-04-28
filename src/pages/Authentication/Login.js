@@ -45,7 +45,7 @@ class Login extends Component {
     if(email.trim().length && userpassword.trim().length){
       loginUser({email: email, password: userpassword}, history);
     }
-    e.preventDefault();
+    //e.preventDefault();
   }
 
   render() {

@@ -50,16 +50,6 @@ class App extends Component {
       <React.Fragment>
         <Router>
           <Switch>
-            {publicRoutes.map((route, idx) => (
-              <AppRoute
-                path={route.path}
-                layout={NonAuthLayout}
-                component={route.component}
-                key={idx}
-                isAuthProtected={false}
-              />
-            ))}
-
             {authProtectedRoutes.map((route, idx) => (
               <AppRoute
                 path={route.path}
@@ -68,6 +58,15 @@ class App extends Component {
                 key={idx}
                 isAuthProtected={true}
               />
+            ))}
+            {publicRoutes.map((route, idx) => (
+                <AppRoute
+                    path={route.path}
+                    layout={NonAuthLayout}
+                    component={route.component}
+                    key={idx}
+                    isAuthProtected={false}
+                />
             ))}
           </Switch>
         </Router>
