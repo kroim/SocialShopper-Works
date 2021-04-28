@@ -38,7 +38,7 @@ class Register extends Component {
 
   onRegister = async(e) => {
     const { history } = this.props;
-    //e.preventDefault();
+    e.preventDefault();
     let useremail = document.getElementById('useremail').value;
     let phone = document.getElementById('phone').value;
     let userpassword = document.getElementById('userpassword').value;

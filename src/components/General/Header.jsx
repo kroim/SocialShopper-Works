@@ -10,7 +10,7 @@ class Header extends Component {
     }
     
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
         return (
             <div id="header" className="header bg-color">
 			<div className="container">
@@ -18,7 +18,7 @@ class Header extends Component {
 					<div className="header-wrap">
 						<div className="col-md-2">
 							<div id="logo" className="logo">
-                                <Link to="/" onClick={() => {window.location.href=this.state.linklogo}}><img src="images/logo.svg" alt="financial" width={157} height={29}
+                                <Link to="/"><img src="images/logo.svg" alt="financial" width={157} height={29}
                                     data-retina="images/logo.svg" data-width={157} data-height={29} /></Link>
 							</div>
                             {/* logo*/}
@@ -50,7 +50,7 @@ class Header extends Component {
 										{
 											menus.map(data =>(
 												<li className={data.name === this.props.data.names ? "active" : ""} key={data.id}>
-													<Link to={data.linkmenu} onClick={() => {window.location.href=data.linkmenu}}>{data.name}</Link>
+													<Link to={data.linkmenu}>{data.name}</Link>
 													{
 														data.namesub === undefined ? "" :
 														<ul className="sub-menu">
@@ -62,7 +62,7 @@ class Header extends Component {
 																			<ul className="sub-menu">
 																				{
 																					submenus.submenu.map(menusub => (
-																						<li className={location.pathname === menusub.linksub ? "active" : ""} key={menusub.id}><Link to= {menusub.linksub} onClick={() => {window.location.href=menusub.linksub}}>{menusub.titlesub}</Link></li>
+																						<li className={location.pathname === menusub.linksub ? "active" : ""} key={menusub.id}><Link to= {menusub.linksub}>{menusub.titlesub}</Link></li>
 																					))
 																				}
 																			</ul>
