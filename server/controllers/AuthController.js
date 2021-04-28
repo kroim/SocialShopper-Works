@@ -17,7 +17,7 @@ const AuthController = {
                 }
         }
     },
-    login: function(req, res){
+    login: async function(req, res){
         const { email, password } = req.params;
         let user = await User.findOne({ name: args.name });
         if(!user){
@@ -26,7 +26,7 @@ const AuthController = {
         let passwordIsValid =  bcrypt.compareSync(args.password, user.password);
 
         if(!passwordIsValid){
-            return res.json({ success: false, error_message: "Invalid Password!" };
+            return res.json({ success: false, error_message: "Invalid Password!" });
         }
 
         return res.json({ success: true, data: user });
